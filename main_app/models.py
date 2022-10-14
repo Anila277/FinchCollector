@@ -6,15 +6,6 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class StuffWithFinch(models.Model):
-    name = models.CharField(max_length=50)
-    color = models.CharField(max_length=30)
-
-    def __str__(self):
-        return f'{self.color} {self.name}'
-
-    def get_absolute_url(self):
-        return reverse('stuffs_detail', kwargs={'pk': self.id})
 
 class Stuff(models.Model):
     name = models.CharField(max_length=50)
