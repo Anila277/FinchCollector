@@ -29,10 +29,10 @@
                 <ul class="right">
                     <li><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'stuffwithfinch_create' %}">Add New Item</a></li>
-                    <li><a href="{% url 'stuffwithfinch_index' %}">View Items</a></li>
                     <li><a href="{% url 'finches_index' %}">View All My Finches</a></li>
                     <li><a href="{% url 'finches_create' %}">Add a New Finch</a></li>
+                    <li><a href="{% url 'stuffs_create' %}">Add New Item</a></li>
+                    <li><a href="{% url 'stuffs_index' %}">View Items</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                     <li><a href="{% url 'login' %}">Login</a></li>

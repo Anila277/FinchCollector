@@ -4,7 +4,7 @@ import imp
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render, redirect 
-from .models import Finch, StuffWithFinch
+from .models import Finch, Stuff
 from .forms import FeedingForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -26,7 +26,7 @@ def finches_index(request):
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
     feeding_form = FeedingForm()
-    stuffs = StuffWithFinch.objects.exclude(id__in=finch.stuffs.all().values_list('id'))
+    stuffs = Stuff.objects.exclude(id__in=finch.stuffs.all().values_list('id'))
     return render(request, 'finches/detail.html', {
         'finch': finch, 'feeding_form': feeding_form, 'stuffs': stuffs
         })
@@ -74,21 +74,23 @@ class FinchesDelete(LoginRequiredMixin, DeleteView):
     model = Finch
     success_url = '/finches/'
 
-class StuffWithFinchIndex(LoginRequiredMixin, ListView):
-    model = StuffWithFinch
+class StuffsIndex(LoginRequiredMixin, ListView):
+    template_name = 'stuffs/index.html'
+    model = Stuff
 
-class StuffWithFinchCreate(LoginRequiredMixin, CreateView):
-    model = StuffWithFinch
-    fields = '__all__'
+class StuffsCreate(LoginRequiredMixin, CreateView):
+    model = Stuff
+    fields = ('name', 'color')
 
-class StuffWithFinchDetail(LoginRequiredMixin, DetailView):
-    model = StuffWithFinch
+class StuffsDetail(LoginRequiredMixin, DetailView):
+    template_name = 'stuffs/detail.html'
+    model = Stuff
 
-class StuffWithFinchDelete(LoginRequiredMixin, DeleteView):
-    model = StuffWithFinch
+class StuffsDelete(LoginRequiredMixin, DeleteView):
+    model = Stuff
     success_url = '/stuffs/'
 
-class StuffWithFinchUpDate(LoginRequiredMixin, UpdateView):
-    model = StuffWithFinch
-    fields = '__all__'
+class StuffsUpDate(LoginRequiredMixin, UpdateView):
+    model = Stuff
+    fields = ('name', 'color')
 

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Stuffs Index | Finch Collector
+{% endblock %}
+
+{% block content %}
+
+<h1>Finch Stuffs Index</h1>
+
+{% for stuff in object_list %}
+
+<a href="{% url 'stuffs_detail' stuff.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">A <span class="{{stuff.color.lower}}-text">{{stuff.color.capitalize}}</span>
+                {{stuff.name }} </span>
+        </div>
+    </div>
+</a>
+
+{% endfor %}
+
+{% endblock %}

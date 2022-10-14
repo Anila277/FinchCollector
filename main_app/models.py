@@ -14,14 +14,24 @@ class StuffWithFinch(models.Model):
         return f'{self.color} {self.name}'
 
     def get_absolute_url(self):
-        return reverse('stuff_detail', kwargs={'pk': self.id})
+        return reverse('stuffs_detail', kwargs={'pk': self.id})
+
+class Stuff(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f'{self.color} {self.name}'
+
+    def get_absolute_url(self):
+        return reverse('stuffs_detail', kwargs={'pk': self.id})
 
 class Finch(models.Model):
     name = models.CharField(max_length=100)
     colors = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    stuffs = models.ManyToManyField(StuffWithFinch)
+    stuffs = models.ManyToManyField(Stuff)
 
     def __str__ (self):
         return self.name
