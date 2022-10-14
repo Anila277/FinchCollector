@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Finch Stuffs List</h1>
+
+{% for toy in object_list %}
+
+<a href="{% url 'stuff_detail' stuff.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">A <span
+                    class="{{stuffwithfinch.color.lower}}-text">{{stuffwithfinch.color.capitalize}}</span>
+                {{stuffwithfinch.name }} </span>
+        </div>
+    </div>
+</a>
+
+{% endfor %}
+
+{% endblock %}

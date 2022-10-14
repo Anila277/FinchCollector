@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Finches Index | Finch Collector
+{% endblock %}
+
+{% block content %}
+<h1>Finches Index</h1>
+
+{% for finch in finches %}
+<a href="{% url 'finches_detail' finch.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ finch.name }}</span>
+            <p>Colors: {{ finch.colors }} </p>
+            <p>Type: {{ finch.type }}</p>
+        </div>
+    </div>
+</a>
+
+
+{% endfor %}
+
+
+
+{% endblock %}
